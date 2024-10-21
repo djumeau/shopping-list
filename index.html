@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/all.min.css">
+  <link rel="stylesheet" href="./css/fontawesome.min.css">
+  <link rel="stylesheet" href="./css/styles.css">
+  <title>Shopping List</title>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <img src="./img/note.png" alt="Shopping List Icon" />
+      <h1>Shopping List</h1>
+    </header>
+    <form id="item-form">
+
+      <!-- Input -->
+      <div class="form-control">
+        <input  type="text" 
+                class="form-input" 
+                id="item-input" 
+                name="item"
+                placeholder="Enter Item"
+        />
+      </div>
+
+      <!-- Add Item Button -->
+      <div class="form-control">
+        <button title="Add Item" type="submit" class="btn">
+          <i class="fas fa-plus" aria-hidden="true"></i> &nbsp;Add Item
+        </button>
+      </div>
+    </form>
+
+    <!-- Filter Items -->
+     <div class="filter">
+      <input  type="text"
+              class="form-input-filter"
+              id="filter"
+              placeholder="Filter Items" 
+      />
+     </div>
+
+     <ul id="item-list" class="items">
+      <li>
+        Apples
+        <button title="Close" class="remove-item btn-link text-red">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </li>
+     </ul>
+
+     <button type="button" id="clear" class="btn-clear">Clear All</button>
+
+  </div>
+
+  <script src="./js/script.js"></script>
+</body>
+</html>
