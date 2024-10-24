@@ -63,6 +63,12 @@ function removeAllItems(e) {
     checkUI();
 }
 
+function filterItems(e) {
+    const text = e.target.value;
+
+    console.log(text);
+}
+
 function checkUI() {
 
     const items = document.querySelectorAll("li");
@@ -84,5 +90,6 @@ function checkUI() {
 itemForm.addEventListener("submit", addItem);
 itemList.addEventListener("click", removeItem)
 clearButton.addEventListener("click", removeAllItems);
+itemFilter.addEventListener("input", filterItems);
 
 checkUI();
