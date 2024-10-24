@@ -64,7 +64,21 @@ function removeAllItems(e) {
 }
 
 function filterItems(e) {
-    const text = e.target.value;
+    const items = document.querySelectorAll("li");
+    const text = e.target.value.toLowerCase();
+
+    items.forEach((item) => {
+        const itemName = item.firstChild.textContent.toLowerCase();
+
+        if (itemName.indexOf(text) > -1) {
+            console.log("Found:" + itemName);
+            item.style.display = 'flex';
+        } else {
+            // Hide item
+            item.style.display = 'none';
+        }
+            
+    });
 
     console.log(text);
 }
