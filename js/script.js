@@ -100,33 +100,34 @@ function displayItems() {
 function clickItem(e) {
     if (e.target.parentElement.classList.contains('remove-item')) {
         // Remove Item
-        removeItem(e);
+        removeItem(e.target.parentElement.parentElement);
     } else {
         // Edit Item
+
     }
 }
 
 // Removes first occurence of target name.
-function removeItem(e) {
+function removeItem(item) {
 
     // Are you sure?
     if (confirm('Are you sure?')) {
         
-        let itemName = e.target.parentElement.parentElement.textContent.toLowerCase();
+        let itemName = item.textContent.toLowerCase();
 
-        // console.log("removeItem ... Remove [" + itemName + "] from " + items);
+        console.log("removeItem ... Remove [" + itemName + "]");
 
-        e.target.parentElement.parentElement.remove();
+        item.remove(); // Remove Button
 
-        // Remove item from array
+        // Remove from storage
         for (let i=0; i<items.length; i++) {
 
             if (itemName === items[i].toLowerCase()) {
-                console.log("Remove [" + items[i] + "] " + items.length);
+                console.log("Found [" + items[i] + "]");
                 if (items.length === 1) {
                     items = [];
                 } else {
-                    items.splice(i, 1);
+                    items.splice(i);
                 }
                 break;
             }
