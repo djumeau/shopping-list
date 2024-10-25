@@ -4,6 +4,8 @@ const itemList = document.getElementById("item-list");
 const itemFilter = document.getElementById("filter");
 const clearButton = document.getElementById("clear");
 let items = []; // Item List
+let editMode = false;
+const formBtn = itemForm.querySelector("button");
 
 function createIcon(classes) {
     const icon = document.createElement('i');
@@ -32,6 +34,19 @@ function addItem(e) {
         return;
     }
 
+    if (editMode) {
+        // In edit mode
+
+        // Remove item in list
+
+        // Remove item from items
+
+        // Update Items
+        // updateItemsToLocalStorage();
+
+        return;
+    }
+
     items.push(newItem);
 
     addItemToDOM(newItem);
@@ -41,6 +56,10 @@ function addItem(e) {
     checkUI();
 
     itemInput.value = "";
+}
+
+function removeItemFromList(itemName) {
+
 }
 
 function addItemToDOM(item) {
@@ -103,8 +122,23 @@ function clickItem(e) {
         removeItem(e.target.parentElement.parentElement);
     } else {
         // Edit Item
-
+        setItemToEdit(e.target);
     }
+}
+
+function setItemToEdit(item) {
+    editMode = true;
+
+    itemList.querySelectorAll('li').forEach(i => {
+        i.classList.remove('edit-mode');
+    });
+
+    item.classList.add("edit-mode");
+
+    formBtn.innerHTML = '<i class="fa-solid fa-pen"></i> Update Item';
+    formBtn.style.backgroundColor = '#228b22';
+
+    itemInput.value = item.textContent;
 }
 
 // Removes first occurence of target name.
