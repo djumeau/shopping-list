@@ -42,8 +42,6 @@ function addItem(e) {
         removeItemFromList(itemToEdit.textContent);
         itemToEdit.remove();
 
-        resetButton();
-
     }
 
     items.push(newItem);
@@ -249,6 +247,8 @@ function checkUI() {
         // Hide filter
         itemFilter.style.display = "block";
     }
+
+    resetButton(); 
 }
 
 function init() {
