@@ -30,7 +30,12 @@ function addItem(e) {
 
     // Validate Input
     if (newItem === "") {
-        // alert("Please add an item.");
+        alert("Please add an item.");
+        return;
+    }
+
+    if (itemExists(newItem)) {
+        alert(newItem + " exists.");
         return;
     }
 
@@ -250,6 +255,19 @@ function checkUI() {
     }
 
     resetButton(); 
+}
+
+function itemExists(itemName) {
+    let found = false;
+
+    for (let i=0; i<items.length; i++) {
+        if (itemName === items[i]) {
+            found = true;
+            break;
+        }
+    }
+
+    return found;
 }
 
 function init() {
