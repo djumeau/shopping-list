@@ -36,15 +36,14 @@ function addItem(e) {
 
     if (editMode) {
         // In edit mode
+        const itemToEdit = itemList.querySelector(".edit-mode");
 
-        // Remove item in list
+        // Remove item in list array
+        removeItemFromList(itemToEdit.textContent);
+        itemToEdit.remove();
 
-        // Remove item from items
+        resetButton();
 
-        // Update Items
-        // updateItemsToLocalStorage();
-
-        return;
     }
 
     items.push(newItem);
@@ -59,6 +58,22 @@ function addItem(e) {
 }
 
 function removeItemFromList(itemName) {
+
+    // console.log("removeItemFromList > " + items);
+
+    for (let i=0; i < items.length; i++) {
+        
+        if (itemName === items[i]) {
+            // console.log("Removing [" + itemName + "]");
+            items.splice(i, 1);
+            break;
+        }
+
+    }
+
+    checkUI();
+
+    // console.log("items > " + items);
 
 }
 
@@ -118,7 +133,7 @@ function displayItems() {
 
 function clickItem(e) {
     if (e.target.parentElement.classList.contains('remove-item')) {
-        // Remove Item
+        // Remove li item
         removeItem(e.target.parentElement.parentElement);
     } else {
         // Edit Item
@@ -129,16 +144,24 @@ function clickItem(e) {
 function setItemToEdit(item) {
     editMode = true;
 
-    itemList.querySelectorAll('li').forEach(i => {
-        i.classList.remove('edit-mode');
-    });
-
     item.classList.add("edit-mode");
 
     formBtn.innerHTML = '<i class="fa-solid fa-pen"></i> Update Item';
     formBtn.style.backgroundColor = '#228b22';
 
     itemInput.value = item.textContent;
+}
+
+function resetButton() {
+
+    itemList.querySelectorAll('li').forEach(i => {
+        i.classList.remove('edit-mode');
+    });
+
+    formBtn.innerHTML = '<i class="fas fa-plus"></i> Add Item';
+    formBtn.style.backgroundColor = '#000';
+
+    editMode = false;
 }
 
 // Removes first occurence of target name.
@@ -149,19 +172,19 @@ function removeItem(item) {
         
         let itemName = item.textContent.toLowerCase();
 
-        console.log("removeItem ... Remove [" + itemName + "]");
+        // console.log("removeItem ... Remove [" + itemName + "]");
 
-        item.remove(); // Remove Button
+        item.remove(); // Remove li
 
         // Remove from storage
         for (let i=0; i<items.length; i++) {
 
             if (itemName === items[i].toLowerCase()) {
-                console.log("Found [" + items[i] + "]");
+                // console.log("Found [" + items[i] + "]");
                 if (items.length === 1) {
                     items = [];
                 } else {
-                    items.splice(i);
+                    items.splice(i, 1);
                 }
                 break;
             }
