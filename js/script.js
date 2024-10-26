@@ -151,13 +151,14 @@ function setItemToEdit(item) {
 }
 
 function resetButton() {
+    itemInput.value = "";
 
     itemList.querySelectorAll('li').forEach(i => {
         i.classList.remove('edit-mode');
     });
 
     formBtn.innerHTML = '<i class="fas fa-plus"></i> Add Item';
-    formBtn.style.backgroundColor = '#000';
+    formBtn.style.backgroundColor = '#333';
 
     editMode = false;
 }
